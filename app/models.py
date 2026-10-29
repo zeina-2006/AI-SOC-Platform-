@@ -1,4 +1,5 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, text
+
 from app.database import Base
 
 
@@ -22,3 +23,10 @@ class SecurityAlertDB(Base):
     risk_score = Column(Integer, nullable=True)
     source_ip = Column(String, nullable=False)
     message = Column(String, nullable=False)
+
+    status = Column(
+        String,
+        nullable=False,
+        default="Active",
+        server_default=text("'Active'")
+    )

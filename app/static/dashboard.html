@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ORBITAL | AI Security Operations</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -20,7 +21,9 @@
   --orange:#ffb86c;
   --green:#55e6b0;
 }
+
 * { box-sizing:border-box; }
+
 body {
   margin:0;
   background:
@@ -30,163 +33,353 @@ body {
   font-family:Inter,Arial,sans-serif;
   font-size:13px;
 }
+
 button { font:inherit; cursor:pointer; }
+
 .app { max-width:1600px; margin:auto; padding:24px 28px; }
+
 .topbar {
-  display:flex; align-items:center; justify-content:space-between;
-  gap:20px; padding-bottom:24px; border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding-bottom:24px;
+  border-bottom:1px solid var(--line);
 }
+
 .brand { display:flex; align-items:center; gap:13px; }
+
 .logo {
-  width:42px;height:42px;border-radius:13px;
-  display:grid;place-items:center;
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  display:grid;
+  place-items:center;
   background:linear-gradient(135deg,#a18aff,#526fff);
-  color:white;font-size:22px;font-weight:800;
+  color:white;
+  font-size:22px;
+  font-weight:800;
   box-shadow:0 0 35px #7867ff30;
 }
-.brand h1 { margin:0;font-size:17px;letter-spacing:2px; }
-.brand p { margin:5px 0 0;color:var(--muted);font-size:10px;letter-spacing:1.5px; }
-.top-right { display:flex;align-items:center;gap:14px;flex-wrap:wrap; }
+
+.brand h1 { margin:0; font-size:17px; letter-spacing:2px; }
+.brand p { margin:5px 0 0; color:var(--muted); font-size:10px; letter-spacing:1.5px; }
+
+.top-right { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+
 .status {
-  display:flex;align-items:center;gap:8px;color:var(--green);
-  border:1px solid #55e6b033;border-radius:20px;padding:9px 13px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:var(--green);
+  border:1px solid #55e6b033;
+  border-radius:20px;
+  padding:9px 13px;
   font-size:11px;
 }
-.dot { width:7px;height:7px;background:currentColor;border-radius:50%;box-shadow:0 0 10px currentColor; }
-.clock { color:var(--muted);font-family:"DM Mono",monospace;font-size:11px; }
+
+.dot {
+  width:7px;
+  height:7px;
+  background:currentColor;
+  border-radius:50%;
+  box-shadow:0 0 10px currentColor;
+}
+
+.clock { color:var(--muted); font-family:"DM Mono",monospace; font-size:11px; }
+
 .hero {
-  display:flex;justify-content:space-between;align-items:flex-end;
-  gap:20px;margin:30px 0 24px;flex-wrap:wrap;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:20px;
+  margin:30px 0 24px;
+  flex-wrap:wrap;
 }
-.eyebrow { color:var(--purple);font-size:10px;letter-spacing:2px;font-weight:700; }
-.hero h2 { margin:10px 0 8px;font-size:clamp(25px,4vw,37px);letter-spacing:-1.5px; }
-.hero p { color:var(--muted);margin:0;line-height:1.7; }
+
+.eyebrow { color:var(--purple); font-size:10px; letter-spacing:2px; font-weight:700; }
+.hero h2 { margin:10px 0 8px; font-size:clamp(25px,4vw,37px); letter-spacing:-1.5px; }
+.hero p { color:var(--muted); margin:0; line-height:1.7; }
+
 .refresh {
-  color:var(--text);background:var(--panel2);border:1px solid var(--line);
-  padding:11px 15px;border-radius:10px;
+  color:var(--text);
+  background:var(--panel2);
+  border:1px solid var(--line);
+  padding:11px 15px;
+  border-radius:10px;
 }
+
 .refresh:hover { border-color:var(--purple); }
+
 .metrics {
-  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:14px;margin-bottom:18px;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:14px;
+  margin-bottom:18px;
 }
+
 .card {
   background:linear-gradient(145deg,#141825,#0f121b);
-  border:1px solid var(--line);border-radius:15px;padding:19px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:19px;
   min-width:0;
 }
-.metric-head { display:flex;justify-content:space-between;align-items:center;gap:8px; }
-.metric-label { color:var(--muted);font-size:11px; }
+
+.metric-head { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.metric-label { color:var(--muted); font-size:11px; }
+
 .metric-icon {
-  width:32px;height:32px;display:grid;place-items:center;
-  background:#9d8aff15;border-radius:10px;color:var(--purple);font-size:16px;
+  width:32px;
+  height:32px;
+  display:grid;
+  place-items:center;
+  background:#9d8aff15;
+  border-radius:10px;
+  color:var(--purple);
+  font-size:16px;
 }
-.metric-number { font-size:32px;font-weight:700;letter-spacing:-1px;margin:18px 0 8px; }
-.metric-foot { color:var(--muted);font-size:10px; }
+
+.metric-number { font-size:32px; font-weight:700; letter-spacing:-1px; margin:18px 0 8px; }
+.metric-foot { color:var(--muted); font-size:10px; }
+
 .purple { color:var(--purple); }
 .red { color:var(--red); }
 .orange { color:var(--orange); }
 .green { color:var(--green); }
+
 .main-grid {
-  display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);
-  gap:18px;margin-bottom:18px;
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);
+  gap:18px;
+  margin-bottom:18px;
 }
+
 .panel {
-  background:var(--panel);border:1px solid var(--line);
-  border-radius:16px;overflow:hidden;min-width:0;
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  min-width:0;
 }
+
 .panel-head {
-  padding:19px 20px;display:flex;align-items:center;
-  justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);
+  padding:19px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  border-bottom:1px solid var(--line);
 }
-.panel-title { font-weight:700;font-size:13px; }
-.panel-sub { color:var(--muted);font-size:10px;margin-top:5px; }
+
+.panel-title { font-weight:700; font-size:13px; }
+.panel-sub { color:var(--muted); font-size:10px; margin-top:5px; }
+
 .pill {
-  border:1px solid var(--line);padding:6px 9px;border-radius:7px;
-  color:var(--muted);font-size:10px;white-space:nowrap;
+  border:1px solid var(--line);
+  padding:6px 9px;
+  border-radius:7px;
+  color:var(--muted);
+  font-size:10px;
+  white-space:nowrap;
 }
+
 .orbit-area {
-  min-height:310px;display:grid;place-items:center;position:relative;
+  min-height:310px;
+  display:grid;
+  place-items:center;
+  position:relative;
   overflow:hidden;
   background:radial-gradient(ellipse at center,#6e5aff12,transparent 65%);
 }
+
 .orbit {
-  position:absolute;width:250px;height:250px;border:1px solid #9d8aff28;
-  border-radius:50%;transform:rotate(-25deg);
+  position:absolute;
+  width:250px;
+  height:250px;
+  border:1px solid #9d8aff28;
+  border-radius:50%;
+  transform:rotate(-25deg);
 }
-.orbit.o2 { width:190px;height:190px;transform:rotate(50deg);border-color:#70a8ff35; }
-.orbit.o3 { width:125px;height:125px;border-color:#9d8aff60; }
+
+.orbit.o2 { width:190px; height:190px; transform:rotate(50deg); border-color:#70a8ff35; }
+.orbit.o3 { width:125px; height:125px; border-color:#9d8aff60; }
+
 .core {
-  width:78px;height:78px;border-radius:50%;z-index:2;
-  display:grid;place-items:center;font-size:26px;
+  width:78px;
+  height:78px;
+  border-radius:50%;
+  z-index:2;
+  display:grid;
+  place-items:center;
+  font-size:26px;
   background:radial-gradient(circle,#8d7aff55,#4c3fa622);
   border:1px solid #a899ff88;
-  box-shadow:0 0 45px #8670ff30, inset 0 0 20px #9d8aff22;
+  box-shadow:0 0 45px #8670ff30,inset 0 0 20px #9d8aff22;
 }
+
 .node {
-  position:absolute;width:11px;height:11px;border-radius:50%;z-index:3;
-  background:var(--purple);box-shadow:0 0 15px currentColor;
+  position:absolute;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  z-index:3;
+  background:var(--purple);
+  box-shadow:0 0 15px currentColor;
 }
-.n1 { top:24%;left:34%;color:var(--purple); }
-.n2 { top:40%;right:24%;color:var(--blue);background:var(--blue); }
-.n3 { bottom:24%;left:37%;color:var(--red);background:var(--red); }
-.n4 { bottom:32%;right:31%;color:var(--green);background:var(--green); }
+
+.n1 { top:24%; left:34%; color:var(--purple); }
+.n2 { top:40%; right:24%; color:var(--blue); background:var(--blue); }
+.n3 { bottom:24%; left:37%; color:var(--red); background:var(--red); }
+.n4 { bottom:32%; right:31%; color:var(--green); background:var(--green); }
+
 .orbit-caption {
-  position:absolute;bottom:18px;left:20px;right:20px;
-  display:flex;justify-content:space-between;gap:10px;
-  color:var(--muted);font:10px "DM Mono",monospace;
+  position:absolute;
+  bottom:18px;
+  left:20px;
+  right:20px;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  color:var(--muted);
+  font:10px "DM Mono",monospace;
 }
-.legend { display:flex;gap:14px;flex-wrap:wrap;padding:0 20px 18px;color:var(--muted);font-size:10px; }
-.legend span { display:flex;align-items:center;gap:6px; }
-.legend i { width:6px;height:6px;border-radius:50%;background:var(--purple); }
+
+.legend { display:flex; gap:14px; flex-wrap:wrap; padding:0 20px 18px; color:var(--muted); font-size:10px; }
+.legend span { display:flex; align-items:center; gap:6px; }
+.legend i { width:6px; height:6px; border-radius:50%; background:var(--purple); }
 .legend span:nth-child(2) i { background:var(--blue); }
 .legend span:nth-child(3) i { background:var(--red); }
 .legend span:nth-child(4) i { background:var(--green); }
+
 .severity-list { padding:20px; }
 .severity-row { margin-bottom:23px; }
 .severity-row:last-child { margin-bottom:5px; }
-.sev-head { display:flex;justify-content:space-between;margin-bottom:10px;gap:8px; }
+.sev-head { display:flex; justify-content:space-between; margin-bottom:10px; gap:8px; }
 .sev-name { color:#dfe2f2; }
-.sev-count { font-family:"DM Mono",monospace;color:var(--muted); }
-.bar { height:6px;background:#242938;border-radius:10px;overflow:hidden; }
-.bar-fill { height:100%;border-radius:10px;transition:width .4s; }
+.sev-count { font-family:"DM Mono",monospace; color:var(--muted); }
+.bar { height:6px; background:#242938; border-radius:10px; overflow:hidden; }
+.bar-fill { height:100%; border-radius:10px; transition:width .4s; }
 .fill-critical { background:var(--red); }
 .fill-high { background:var(--orange); }
 .fill-medium { background:var(--purple); }
 .fill-low { background:var(--green); }
-.severity-note { margin-top:26px;padding:13px;border-radius:10px;background:#9d8aff0c;border:1px solid #9d8aff20;color:var(--muted);font-size:10px;line-height:1.7; }
-.bottom-grid { display:grid;grid-template-columns:minmax(0,1.6fr) minmax(270px,1fr);gap:18px; }
+
+.severity-note {
+  margin-top:26px;
+  padding:13px;
+  border-radius:10px;
+  background:#9d8aff0c;
+  border:1px solid #9d8aff20;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.7;
+}
+
+.bottom-grid {
+  display:grid;
+  grid-template-columns:minmax(0,1.6fr) minmax(270px,1fr);
+  gap:18px;
+}
+
 .table-wrap { overflow-x:auto; }
-table { border-collapse:collapse;width:100%;text-align:left;white-space:nowrap; }
-th { padding:13px 18px;color:var(--muted);font-size:10px;font-weight:500;background:#ffffff03; }
-td { padding:15px 18px;border-top:1px solid #242a3b88;font-size:11px; }
+table { border-collapse:collapse; width:100%; text-align:left; white-space:nowrap; }
+th { padding:13px 18px; color:var(--muted); font-size:10px; font-weight:500; background:#ffffff03; }
+td { padding:15px 18px; border-top:1px solid #242a3b88; font-size:11px; }
 tbody tr:hover { background:#ffffff04; }
 .mono { font-family:"DM Mono",monospace; }
 .ip { color:var(--blue); }
-.tag { display:inline-block;padding:5px 8px;border-radius:6px;font-size:9px;font-weight:700; }
-.tag-critical { background:#ff657e19;color:var(--red); }
-.tag-high { background:#ffb86c19;color:var(--orange); }
-.tag-medium { background:#9d8aff19;color:var(--purple); }
-.tag-low { background:#55e6b019;color:var(--green); }
-.empty { padding:28px 18px;text-align:center;color:var(--muted); }
-.alert-list { padding:0 18px; }
-.alert-item { display:flex;gap:12px;padding:17px 0;border-bottom:1px solid var(--line); }
-.alert-item:last-child { border-bottom:0; }
-.alert-mark { flex:0 0 8px;height:8px;margin-top:4px;border-radius:50%;background:var(--red);box-shadow:0 0 12px #ff657e66; }
-.alert-copy { min-width:0; }
-.alert-copy strong { display:block;font-size:11px;margin-bottom:6px; }
-.alert-copy p { color:var(--muted);font-size:10px;line-height:1.6;margin:0;overflow-wrap:anywhere; }
-.alert-meta { display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center; }
-.footer {
-  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
-  margin-top:22px;padding:17px 0;color:var(--muted);
-  border-top:1px solid var(--line);font-size:10px;
+
+.tag {
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:6px;
+  font-size:9px;
+  font-weight:700;
 }
-#notice { color:var(--muted);font-size:10px; }
+
+.tag-critical { background:#ff657e19; color:var(--red); }
+.tag-high { background:#ffb86c19; color:var(--orange); }
+.tag-medium { background:#9d8aff19; color:var(--purple); }
+.tag-low { background:#55e6b019; color:var(--green); }
+
+.empty { padding:28px 18px; text-align:center; color:var(--muted); }
+
+.alert-list { padding:0 18px; }
+
+.alert-item {
+  display:flex;
+  gap:12px;
+  padding:17px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.alert-item:last-child { border-bottom:0; }
+
+.alert-mark {
+  flex:0 0 8px;
+  height:8px;
+  margin-top:4px;
+  border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 12px #ff657e66;
+}
+
+.alert-copy { min-width:0; flex:1; }
+.alert-copy strong { display:block; font-size:11px; margin-bottom:6px; }
+
+.alert-copy p {
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.6;
+  margin:0;
+  overflow-wrap:anywhere;
+}
+
+.alert-meta { display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; align-items:center; }
+
+.alert-status {
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:6px;
+  font-size:9px;
+  font-weight:700;
+}
+
+.status-active { color:var(--orange); background:#ffb86c19; }
+.status-resolved { color:var(--green); background:#55e6b019; }
+
+.resolve-btn {
+  color:var(--green);
+  background:#55e6b010;
+  border:1px solid #55e6b044;
+  border-radius:7px;
+  padding:6px 9px;
+  font-size:10px;
+}
+
+.resolve-btn:hover { background:#55e6b022; }
+.resolve-btn:disabled { opacity:.5; cursor:not-allowed; }
+
+.footer {
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-top:22px;
+  padding:17px 0;
+  color:var(--muted);
+  border-top:1px solid var(--line);
+  font-size:10px;
+}
+
+#notice { color:var(--muted); font-size:10px; }
+
 @media(max-width:900px) {
   .metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .main-grid,.bottom-grid { grid-template-columns:1fr; }
 }
+
 @media(max-width:520px) {
   .app { padding:17px 12px; }
   .topbar { align-items:flex-start; }
@@ -200,8 +393,10 @@ tbody tr:hover { background:#ffffff04; }
 }
 </style>
 </head>
+
 <body>
 <div class="app">
+
   <header class="topbar">
     <div class="brand">
       <div class="logo">◈</div>
@@ -210,8 +405,12 @@ tbody tr:hover { background:#ffffff04; }
         <p>AI SECURITY OPERATIONS CENTER</p>
       </div>
     </div>
+
     <div class="top-right">
-      <div class="status"><span class="dot"></span><span id="connection">CONNECTING</span></div>
+      <div class="status">
+        <span class="dot"></span>
+        <span id="connection">CONNECTING</span>
+      </div>
       <span class="clock" id="clock">--:--:--</span>
     </div>
   </header>
@@ -227,22 +426,37 @@ tbody tr:hover { background:#ffffff04; }
 
   <section class="metrics">
     <article class="card">
-      <div class="metric-head"><span class="metric-label">Total events</span><span class="metric-icon">⌁</span></div>
+      <div class="metric-head">
+        <span class="metric-label">Total events</span>
+        <span class="metric-icon">⌁</span>
+      </div>
       <div class="metric-number" id="totalEvents">—</div>
       <div class="metric-foot">Events recorded in database</div>
     </article>
+
     <article class="card">
-      <div class="metric-head"><span class="metric-label">Security alerts</span><span class="metric-icon" style="color:var(--red)">⚠</span></div>
+      <div class="metric-head">
+        <span class="metric-label">Security alerts</span>
+        <span class="metric-icon" style="color:var(--red)">⚠</span>
+      </div>
       <div class="metric-number red" id="totalAlerts">—</div>
       <div class="metric-foot">Alerts currently stored</div>
     </article>
+
     <article class="card">
-      <div class="metric-head"><span class="metric-label">High-risk alerts</span><span class="metric-icon" style="color:var(--orange)">◉</span></div>
+      <div class="metric-head">
+        <span class="metric-label">High-risk alerts</span>
+        <span class="metric-icon" style="color:var(--orange)">◉</span>
+      </div>
       <div class="metric-number orange" id="highAlerts">—</div>
       <div class="metric-foot">High and critical severity</div>
     </article>
+
     <article class="card">
-      <div class="metric-head"><span class="metric-label">Failed logins</span><span class="metric-icon" style="color:var(--blue)">⌑</span></div>
+      <div class="metric-head">
+        <span class="metric-label">Failed logins</span>
+        <span class="metric-icon" style="color:var(--blue)">⌑</span>
+      </div>
       <div class="metric-number purple" id="failedLogins">—</div>
       <div class="metric-foot">Recorded failed login events</div>
     </article>
@@ -251,31 +465,81 @@ tbody tr:hover { background:#ffffff04; }
   <section class="main-grid">
     <article class="panel">
       <div class="panel-head">
-        <div><div class="panel-title">Signal visualization</div><div class="panel-sub">Conceptual security topology</div></div>
+        <div>
+          <div class="panel-title">Signal visualization</div>
+          <div class="panel-sub">Conceptual security topology</div>
+        </div>
         <span class="pill">ORBITAL CORE</span>
       </div>
+
       <div class="orbit-area">
-        <div class="orbit"></div><div class="orbit o2"></div><div class="orbit o3"></div>
-        <div class="node n1"></div><div class="node n2"></div><div class="node n3"></div><div class="node n4"></div>
+        <div class="orbit"></div>
+        <div class="orbit o2"></div>
+        <div class="orbit o3"></div>
+        <div class="node n1"></div>
+        <div class="node n2"></div>
+        <div class="node n3"></div>
+        <div class="node n4"></div>
         <div class="core">◈</div>
-        <div class="orbit-caption"><span>THREAT NETWORK</span><span>LIVE DATA BELOW</span></div>
+        <div class="orbit-caption">
+          <span>THREAT NETWORK</span>
+          <span>LIVE DATA BELOW</span>
+        </div>
       </div>
+
       <div class="legend">
-        <span><i></i> Core</span><span><i></i> Telemetry</span><span><i></i> Threat</span><span><i></i> Protected</span>
+        <span><i></i> Core</span>
+        <span><i></i> Telemetry</span>
+        <span><i></i> Threat</span>
+        <span><i></i> Protected</span>
       </div>
     </article>
 
     <article class="panel">
       <div class="panel-head">
-        <div><div class="panel-title">Risk distribution</div><div class="panel-sub">Alerts grouped by severity</div></div>
+        <div>
+          <div class="panel-title">Risk distribution</div>
+          <div class="panel-sub">Alerts grouped by severity</div>
+        </div>
         <span class="pill">RISK ENGINE</span>
       </div>
+
       <div class="severity-list">
-        <div class="severity-row"><div class="sev-head"><span class="sev-name red">Critical</span><span class="sev-count" id="criticalCount">0</span></div><div class="bar"><div class="bar-fill fill-critical" id="criticalBar" style="width:0%"></div></div></div>
-        <div class="severity-row"><div class="sev-head"><span class="sev-name orange">High</span><span class="sev-count" id="highCount">0</span></div><div class="bar"><div class="bar-fill fill-high" id="highBar" style="width:0%"></div></div></div>
-        <div class="severity-row"><div class="sev-head"><span class="sev-name purple">Medium</span><span class="sev-count" id="mediumCount">0</span></div><div class="bar"><div class="bar-fill fill-medium" id="mediumBar" style="width:0%"></div></div></div>
-        <div class="severity-row"><div class="sev-head"><span class="sev-name green">Low</span><span class="sev-count" id="lowCount">0</span></div><div class="bar"><div class="bar-fill fill-low" id="lowBar" style="width:0%"></div></div></div>
-        <div class="severity-note" id="riskNote">Risk statistics will appear when the API responds.</div>
+        <div class="severity-row">
+          <div class="sev-head">
+            <span class="sev-name red">Critical</span>
+            <span class="sev-count" id="criticalCount">0</span>
+          </div>
+          <div class="bar"><div class="bar-fill fill-critical" id="criticalBar" style="width:0%"></div></div>
+        </div>
+
+        <div class="severity-row">
+          <div class="sev-head">
+            <span class="sev-name orange">High</span>
+            <span class="sev-count" id="highCount">0</span>
+          </div>
+          <div class="bar"><div class="bar-fill fill-high" id="highBar" style="width:0%"></div></div>
+        </div>
+
+        <div class="severity-row">
+          <div class="sev-head">
+            <span class="sev-name purple">Medium</span>
+            <span class="sev-count" id="mediumCount">0</span>
+          </div>
+          <div class="bar"><div class="bar-fill fill-medium" id="mediumBar" style="width:0%"></div></div>
+        </div>
+
+        <div class="severity-row">
+          <div class="sev-head">
+            <span class="sev-name green">Low</span>
+            <span class="sev-count" id="lowCount">0</span>
+          </div>
+          <div class="bar"><div class="bar-fill fill-low" id="lowBar" style="width:0%"></div></div>
+        </div>
+
+        <div class="severity-note" id="riskNote">
+          Risk statistics will appear when the API responds.
+        </div>
       </div>
     </article>
   </section>
@@ -283,23 +547,43 @@ tbody tr:hover { background:#ffffff04; }
   <section class="bottom-grid">
     <article class="panel">
       <div class="panel-head">
-        <div><div class="panel-title">Recent security events</div><div class="panel-sub">Latest records from your API</div></div>
+        <div>
+          <div class="panel-title">Recent security events</div>
+          <div class="panel-sub">Latest records from your API</div>
+        </div>
         <span class="pill" id="eventCountPill">0 RECORDS</span>
       </div>
+
       <div class="table-wrap">
         <table>
-          <thead><tr><th>ID</th><th>EVENT TYPE</th><th>SOURCE IP</th><th>USERNAME</th><th>SOURCE</th></tr></thead>
-          <tbody id="eventsTable"><tr><td colspan="5" class="empty">Loading events...</td></tr></tbody>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>EVENT TYPE</th>
+              <th>SOURCE IP</th>
+              <th>USERNAME</th>
+              <th>SOURCE</th>
+            </tr>
+          </thead>
+          <tbody id="eventsTable">
+            <tr><td colspan="5" class="empty">Loading events...</td></tr>
+          </tbody>
         </table>
       </div>
     </article>
 
     <article class="panel">
       <div class="panel-head">
-        <div><div class="panel-title">Threat alerts</div><div class="panel-sub">Detected security incidents</div></div>
+        <div>
+          <div class="panel-title">Threat alerts</div>
+          <div class="panel-sub">Detected security incidents</div>
+        </div>
         <span class="pill" id="alertCountPill">0 ALERTS</span>
       </div>
-      <div class="alert-list" id="alertsList"><div class="empty">Loading alerts...</div></div>
+
+      <div class="alert-list" id="alertsList">
+        <div class="empty">Loading alerts...</div>
+      </div>
     </article>
   </section>
 
@@ -308,6 +592,7 @@ tbody tr:hover { background:#ffffff04; }
     <span id="lastUpdated">Waiting for first update</span>
     <span id="notice">Auto-refresh every 10 seconds</span>
   </footer>
+
 </div>
 
 <script>
@@ -315,26 +600,43 @@ const $ = id => document.getElementById(id);
 
 function escapeHTML(value) {
   return String(value ?? "—").replace(/[&<>"']/g, char => ({
-    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
   })[char]);
 }
 
 function severityClass(value) {
   const s = String(value || "low").toLowerCase();
+
   if (s === "critical") return "critical";
   if (s === "high") return "high";
   if (s === "medium" || s === "moderate") return "medium";
+
   return "low";
 }
 
 function updateRisk(alerts) {
-  const counts = {critical:0,high:0,medium:0,low:0};
-  alerts.forEach(alert => counts[severityClass(alert.severity)]++);
+  const counts = {
+    critical:0,
+    high:0,
+    medium:0,
+    low:0
+  };
+
+  alerts.forEach(alert => {
+    counts[severityClass(alert.severity)]++;
+  });
+
   const total = alerts.length || 1;
-  Object.entries(counts).forEach(([level,count]) => {
+
+  Object.entries(counts).forEach(([level, count]) => {
     $(level + "Count").textContent = count;
     $(level + "Bar").style.width = (count / total * 100) + "%";
   });
+
   $("riskNote").textContent = alerts.length
     ? `${alerts.length} stored alert(s) analyzed. Distribution reflects the current alert records.`
     : "No alerts are currently stored. Submit events and run detection to evaluate threats.";
@@ -342,75 +644,184 @@ function updateRisk(alerts) {
 
 function renderEvents(events) {
   $("eventCountPill").textContent = `${events.length} RECORDS`;
+
   if (!events.length) {
-    $("eventsTable").innerHTML = '<tr><td colspan="5" class="empty">No security events recorded yet.</td></tr>';
+    $("eventsTable").innerHTML =
+      '<tr><td colspan="5" class="empty">No security events recorded yet.</td></tr>';
     return;
   }
-  $("eventsTable").innerHTML = events.slice(0,10).map(event => `
+
+  $("eventsTable").innerHTML = events.slice(0, 10).map(event => `
     <tr>
       <td class="mono">${escapeHTML(event.id)}</td>
       <td>${escapeHTML(event.event_type)}</td>
       <td class="mono ip">${escapeHTML(event.source_ip)}</td>
       <td>${escapeHTML(event.username)}</td>
       <td>${escapeHTML(event.source)}</td>
-    </tr>`).join("");
+    </tr>
+  `).join("");
 }
 
 function renderAlerts(alerts) {
   $("alertCountPill").textContent = `${alerts.length} ALERTS`;
+
   if (!alerts.length) {
-    $("alertsList").innerHTML = '<div class="empty">No alerts detected yet.</div>';
+    $("alertsList").innerHTML =
+      '<div class="empty">No alerts detected yet.</div>';
     return;
   }
-  $("alertsList").innerHTML = alerts.slice(0,8).map(alert => {
+
+  $("alertsList").innerHTML = alerts.slice(0, 8).map(alert => {
     const sev = severityClass(alert.severity);
-    return `<div class="alert-item">
-      <span class="alert-mark" style="background:var(--${sev === "critical" ? "red" : sev === "high" ? "orange" : sev === "medium" ? "purple" : "green"})"></span>
-      <div class="alert-copy">
-        <strong>${escapeHTML(alert.alert_type || "Security alert")}</strong>
-        <p>${escapeHTML(alert.message)}</p>
-        <div class="alert-meta">
-          <span class="tag tag-${sev}">${escapeHTML(String(alert.severity || "Low").toUpperCase())}</span>
-          <span class="mono ip">${escapeHTML(alert.source_ip)}</span>
-          <span class="mono">RISK ${escapeHTML(alert.risk_score ?? "N/A")}/100</span>
+    const status = String(alert.status || "Active");
+    const isResolved = status.toLowerCase() === "resolved";
+
+    const markColor = isResolved
+      ? "green"
+      : sev === "critical"
+        ? "red"
+        : sev === "high"
+          ? "orange"
+          : sev === "medium"
+            ? "purple"
+            : "green";
+
+    const alertId = Number(alert.id);
+
+    return `
+      <div class="alert-item">
+        <span class="alert-mark"
+          style="background:var(--${markColor})"></span>
+
+        <div class="alert-copy">
+          <strong>${escapeHTML(alert.alert_type || "Security alert")}</strong>
+
+          <p>${escapeHTML(alert.message)}</p>
+
+          <div class="alert-meta">
+            <span class="tag tag-${sev}">
+              ${escapeHTML(String(alert.severity || "Low").toUpperCase())}
+            </span>
+
+            <span class="mono ip">
+              ${escapeHTML(alert.source_ip)}
+            </span>
+
+            <span class="mono">
+              RISK ${escapeHTML(alert.risk_score ?? "N/A")}/100
+            </span>
+
+            <span class="alert-status ${
+              isResolved ? "status-resolved" : "status-active"
+            }">
+              ${isResolved ? "RESOLVED" : "ACTIVE"}
+            </span>
+
+            ${
+              isResolved || !Number.isSafeInteger(alertId) || alertId < 1
+                ? ""
+                : `<button class="resolve-btn"
+                    onclick="resolveAlert(${alertId})">
+                    Resolve
+                  </button>`
+            }
+          </div>
         </div>
       </div>
-    </div>`;
+    `;
   }).join("");
+}
+
+async function resolveAlert(alertId) {
+  const confirmed = window.confirm(
+    `Are you sure you want to resolve alert #${alertId}?`
+  );
+
+  if (!confirmed) return;
+
+  try {
+    $("notice").textContent = `Resolving alert #${alertId}...`;
+
+    const response = await fetch(
+      `/alerts/${encodeURIComponent(alertId)}/resolve`,
+      {
+        method:"POST",
+        headers: {
+          "Accept":"application/json"
+        }
+      }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.detail || "Failed to resolve alert.");
+    }
+
+    $("notice").textContent = result.message || "Alert resolved.";
+    await loadDashboard();
+
+  } catch (error) {
+    $("notice").textContent = error.message;
+    window.alert(`Could not resolve alert: ${error.message}`);
+  }
 }
 
 async function loadDashboard() {
   const btn = $("refreshBtn");
+
   btn.disabled = true;
   btn.textContent = "↻  Loading...";
+
   try {
     const responses = await Promise.all([
       fetch("/events", {cache:"no-store"}),
       fetch("/alerts", {cache:"no-store"})
     ]);
+
     if (responses.some(response => !response.ok)) {
       throw new Error("The API returned an error. Check /events and /alerts.");
     }
-    const [events,alerts] = await Promise.all(responses.map(response => response.json()));
+
+    const [events, alerts] = await Promise.all(
+      responses.map(response => response.json())
+    );
+
     if (!Array.isArray(events) || !Array.isArray(alerts)) {
       throw new Error("Unexpected API response format.");
     }
+
     $("connection").textContent = "API CONNECTED";
     $("connection").parentElement.style.color = "var(--green)";
+
     $("totalEvents").textContent = events.length;
     $("totalAlerts").textContent = alerts.length;
-    $("highAlerts").textContent = alerts.filter(a => ["high","critical"].includes(String(a.severity).toLowerCase())).length;
-    $("failedLogins").textContent = events.filter(e => String(e.event_type).toLowerCase() === "failed_login").length;
+
+    $("highAlerts").textContent = alerts.filter(alert =>
+      ["high", "critical"].includes(
+        String(alert.severity || "").toLowerCase()
+      )
+    ).length;
+
+    $("failedLogins").textContent = events.filter(event =>
+      String(event.event_type || "").toLowerCase() === "failed_login"
+    ).length;
+
     updateRisk(alerts);
     renderEvents(events);
     renderAlerts(alerts);
-    $("lastUpdated").textContent = "Last updated: " + new Date().toLocaleTimeString();
+
+    $("lastUpdated").textContent =
+      "Last updated: " + new Date().toLocaleTimeString();
+
     $("notice").textContent = "Auto-refresh every 10 seconds";
+
   } catch (error) {
     $("connection").textContent = "API ERROR";
     $("connection").parentElement.style.color = "var(--red)";
     $("notice").textContent = error.message;
     $("lastUpdated").textContent = "Update failed";
+
   } finally {
     btn.disabled = false;
     btn.textContent = "↻  Refresh data";
@@ -422,9 +833,10 @@ function updateClock() {
 }
 
 updateClock();
-setInterval(updateClock,1000);
+setInterval(updateClock, 1000);
+
 loadDashboard();
-setInterval(loadDashboard,10000);
+setInterval(loadDashboard, 10000);
 </script>
 </body>
 </html>
